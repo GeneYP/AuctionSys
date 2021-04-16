@@ -1,6 +1,5 @@
 package com.web.auction.config;
 
-import com.sun.javaws.IconUtil;
 import com.web.auction.interceptor.CheckUserInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

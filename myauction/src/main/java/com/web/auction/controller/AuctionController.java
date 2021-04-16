@@ -62,11 +62,9 @@ public class AuctionController {
         return "addAuction";
     }
 
-    @DeleteMapping("/deleteAuction/{auctionid}")
-    public String deleteAuction(@PathVariable int auctionid){
-        //1. 查找
-
-        //2. 保存删除操作
+    @GetMapping("/deleteAuction")
+    public String deleteAuction(int auctionid){
+        //删除(只能删除没有交易的)
         auctionService.deleteAuction(auctionid);
         return "redirect:/queryAuctions";
     }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/AuctionSys.iml" filepath="$PROJECT_DIR$/.idea/AuctionSys.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myauction/myauction.iml" filepath="$PROJECT_DIR$/myauction/myauction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-test-hello/springboot-test-hello.iml" filepath="$PROJECT_DIR$/springboot-test-hello/springboot-test-hello.iml" />
+    </modules>
+  </component>
+</project>
