@@ -9,4 +9,6 @@ public interface AuctionService {
     public List<Auction> queryAuctions();
 
     public void addAuction(Auction auction);
+    
+    public void deleteAuction(int auctionid);
 }

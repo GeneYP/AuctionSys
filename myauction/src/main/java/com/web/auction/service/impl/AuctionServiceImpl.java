@@ -24,4 +24,10 @@ public class AuctionServiceImpl implements AuctionService {
     public void addAuction(Auction auction) {
         auctionMapper.insert(auction);
     }
+
+    @Override
+    public void deleteAuction(int auctionid) {
+        System.out.println("即将删除" + auctionid);
+        auctionMapper.deleteByPrimaryKey(auctionid);
+    }
 }

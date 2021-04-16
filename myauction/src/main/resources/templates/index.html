@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
@@ -16,18 +17,19 @@
     </div>
     <div class="forms">
         <label for="name">名称</label>
-        <input name="" type="text" class="nwinput" id="name"/>
+        <input name="" type="text" class="nwinput" id="name" />
         <label for="names">描述</label>
-        <input name="" type="text" id="names" class="nwinput"/>
+        <input name="" type="text" id="names" class="nwinput" />
         <label for="time">开始时间</label>
-        <input name="" type="text" id="time" class="nwinput"/>
+        <input name="" type="text" id="time" class="nwinput" />
         <label for="end-time">结束时间</label>
         <input name="" type="text" id="end-time" class="nwinput" />
         <label for="price">起拍价</label>
         <input name="" type="text" id="price" class="nwinput" />
-        <input name="" type="button"  value="查询" class="spbg buttombg f14  sale-buttom"/>
+        <input name="" type="button" value="查询" class="spbg buttombg f14  sale-buttom" />
         <div th:if="${session.user.userisadmin==1}">
-            <input type="button"  value="发布" onclick="location='/toAdd'" class="spbg buttombg f14  sale-buttom buttomb"/>
+            <input type="button" value="发布" onclick="location='/toAdd'"
+                   class="spbg buttombg f14  sale-buttom buttomb" />
         </div>
     </div>
     <div class="items">
@@ -48,8 +50,8 @@
             <li th:text="${auction.auctionstartprice}"></li>
             <li class="borderno red">
                 <div th:if="${session.user.userisadmin==1}">
-                    <a href="#" title="竞拍" onclick="dele();">修改</a>|
-                    <a href="#" title="竞拍" onclick="abc();">删除</a>
+                    <a href="#" title="竞拍" onclick="dele();">修改</a>
+                    <a th:href="@{/deleteAuction/(auctionid=${auction.getAuctionid()})}" title="竞拍";>删除</a>
                 </div>
                 <div th:if="${session.user.userisadmin==0}">
                     <a href="#" title="竞拍" onclick="abc();">竞拍</a>
@@ -69,4 +71,5 @@
     <!-- main end-->
 </div>
 </body>
+
 </html>

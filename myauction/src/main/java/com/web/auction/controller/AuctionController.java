@@ -6,9 +6,7 @@ import com.web.auction.pojo.Auction;
 import com.web.auction.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +20,7 @@ public class AuctionController {
 
     public static final int PAGE_SIZE = 10;
 
-    @GetMapping("/queryAuctions")   //preHandle
+    @GetMapping("/queryAuctions")   //分页查询   //preHandle
     public ModelAndView queryAuctions(
             @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum){
         //1. 分页拦截  重构sql语句  注：要先拦截再查询
@@ -62,5 +60,14 @@ public class AuctionController {
     @GetMapping("/toAdd")
     public String toAdd(){
         return "addAuction";
+    }
+
+    @DeleteMapping("/deleteAuction/{auctionid}")
+    public String deleteAuction(@PathVariable int auctionid){
+        //1. 查找
+
+        //2. 保存删除操作
+        auctionService.deleteAuction(auctionid);
+        return "redirect:/queryAuctions";
     }
 }
