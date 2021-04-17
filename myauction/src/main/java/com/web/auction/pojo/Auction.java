@@ -3,13 +3,14 @@ package com.web.auction.pojo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Auction implements Serializable {
     private Integer auctionid;
 
     private String auctionname;
 
-    private BigDecimal auctionstartprice;
+    private double auctionstartprice;
 
     private BigDecimal auctionupset;
 
@@ -22,6 +23,8 @@ public class Auction implements Serializable {
     private String auctionpictype;
 
     private String auctiondesc;
+
+    private List<Auctionrecord> auctionrecordList; //多方关联
 
     private static final long serialVersionUID = 1L;
 
@@ -41,11 +44,11 @@ public class Auction implements Serializable {
         this.auctionname = auctionname;
     }
 
-    public BigDecimal getAuctionstartprice() {
+    public double getAuctionstartprice() {
         return auctionstartprice;
     }
 
-    public void setAuctionstartprice(BigDecimal auctionstartprice) {
+    public void setAuctionstartprice(double auctionstartprice) {
         this.auctionstartprice = auctionstartprice;
     }
 
@@ -95,6 +98,14 @@ public class Auction implements Serializable {
 
     public void setAuctiondesc(String auctiondesc) {
         this.auctiondesc = auctiondesc;
+    }
+
+    public List<Auctionrecord> getAuctionrecordList() {
+        return auctionrecordList;
+    }
+
+    public void setAuctionrecordList(List<Auctionrecord> auctionrecordList) {
+        this.auctionrecordList = auctionrecordList;
     }
 
     @Override

@@ -13,7 +13,9 @@ public class Auctionrecord implements Serializable {
 
     private Date auctiontime;
 
-    private BigDecimal auctionprice;
+    private double auctionprice;
+
+    private Auctionuser user;  //一方关联 一对多
 
     private static final long serialVersionUID = 1L;
 
@@ -49,12 +51,20 @@ public class Auctionrecord implements Serializable {
         this.auctiontime = auctiontime;
     }
 
-    public BigDecimal getAuctionprice() {
+    public double getAuctionprice() {
         return auctionprice;
     }
 
-    public void setAuctionprice(BigDecimal auctionprice) {
+    public void setAuctionprice(double auctionprice) {
         this.auctionprice = auctionprice;
+    }
+
+    public Auctionuser getUser() {
+        return user;
+    }
+
+    public void setUser(Auctionuser user) {
+        this.user = user;
     }
 
     @Override

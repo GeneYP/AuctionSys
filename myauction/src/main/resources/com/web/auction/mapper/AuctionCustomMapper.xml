@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.auction.mapper.AuctionCustomMapper">
+
+                                                                        <!-- 对象的关联↓ -->
+    <resultMap id="auctionAndRecordResultMap" type="com.web.auction.pojo.Auction">
+        <id column="auctionId" jdbcType="INTEGER" property="auctionid" />
+        <result column="auctionName" jdbcType="VARCHAR" property="auctionname" />
+        <result column="auctionStartPrice" jdbcType="DECIMAL" property="auctionstartprice" />
+        <result column="auctionUpset" jdbcType="DECIMAL" property="auctionupset" />
+        <result column="auctionStartTime" jdbcType="TIMESTAMP" property="auctionstarttime" />
+        <result column="auctionEndTime" jdbcType="TIMESTAMP" property="auctionendtime" />
+        <result column="auctionPic" jdbcType="VARCHAR" property="auctionpic" />
+        <result column="auctionPicType" jdbcType="VARCHAR" property="auctionpictype" />
+        <result column="auctionDesc" jdbcType="VARCHAR" property="auctiondesc" />
+        <collection property="auctionrecordList" ofType="com.web.auction.pojo.Auctionrecord">
+            <id column="record_id" jdbcType="INTEGER" property="id" />
+            <result column="record_user_id" jdbcType="INTEGER" property="userid" />
+            <result column="record_auction_id" jdbcType="INTEGER" property="auctionid" />
+            <result column="auctionTime" jdbcType="TIMESTAMP" property="auctiontime" />
+            <result column="auctionPrice" jdbcType="DECIMAL" property="auctionprice" />
+            <association property="user" javaType="com.web.auction.pojo.Auctionuser">
+                <id column="record_user_id" jdbcType="INTEGER" property="userid" />
+                <result column="userName" jdbcType="VARCHAR" property="username" />
+            </association>
+        </collection>
+    </resultMap>
+
+    <select id="findAuctionAndRecordById" parameterType="int" resultMap="auctionAndRecordResultMap">
+        SELECT auction.*,
+            auctionrecord.id record_id,
+            auctionrecord.auctionId record_auction_id,
+            auctionrecord.userId record_user_id,
+            auctionrecord.auctionPrice,
+            auctionrecord.auctionTime,
+            auctionuser.userName
+        FROM auction
+        LEFT OUTER JOIN auctionrecord
+            ON auction.auctionId=auctionrecord.auctionId
+        LEFT OUTER JOIN auctionuser
+            ON auctionuser.userId=auctionrecord.userId
+        WHERE auction.auctionId=#{id}
+        ORDER BY auctionrecord.auctionPrice DESC
+  </select>
+</mapper>
