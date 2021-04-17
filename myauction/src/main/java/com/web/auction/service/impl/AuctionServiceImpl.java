@@ -4,6 +4,7 @@ import com.web.auction.mapper.AuctionCustomMapper;
 import com.web.auction.mapper.AuctionMapper;
 import com.web.auction.mapper.AuctionrecordMapper;
 import com.web.auction.pojo.Auction;
+import com.web.auction.pojo.AuctionCustom;
 import com.web.auction.pojo.Auctionrecord;
 import com.web.auction.pojo.AuctionrecordExample;
 import com.web.auction.service.AuctionService;
@@ -101,5 +102,15 @@ public class AuctionServiceImpl implements AuctionService {
         }
         auctionrecordMapper.insert(record);
         System.out.println("添加成功！");
+    }
+
+    @Override
+    public List<AuctionCustom> findAuctionEnd() {
+        return this.auctionCustomMapper.findAuctionEnd();
+    }
+
+    @Override
+    public List<Auction> findAuctionNow() {
+        return this.auctionCustomMapper.findAuctionNow();
     }
 }

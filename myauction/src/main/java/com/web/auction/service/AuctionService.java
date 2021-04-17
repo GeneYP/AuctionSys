@@ -1,6 +1,7 @@
 package com.web.auction.service;
 
 import com.web.auction.pojo.Auction;
+import com.web.auction.pojo.AuctionCustom;
 import com.web.auction.pojo.Auctionrecord;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface AuctionService {
     public Auction findAuctionAndRecordById(int auctionid);
 
     public void addAuctionRecord(Auctionrecord record) throws Exception;
+
+    public List<AuctionCustom> findAuctionEnd();
+
+    public List<Auction> findAuctionNow();
 }

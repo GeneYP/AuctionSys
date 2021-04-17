@@ -31,6 +31,10 @@
             <input type="button" value="发布" onclick="location='/toAdd'"
                    class="spbg buttombg f14  sale-buttom buttomb" />
         </div>
+        <div th:if="${session.user.userisadmin==0}">
+        <input type="button" value="结果公布" onclick="location='/toResult'"
+               class="spbg buttombg f14  sale-buttom buttomb" />
+    </div>
     </div>
     <div class="items">
         <ul class="rows even strong">

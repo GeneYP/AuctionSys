@@ -41,5 +41,45 @@
             ON auctionuser.userId=auctionrecord.userId
         WHERE auction.auctionId=#{id}
         ORDER BY auctionrecord.auctionPrice DESC
-  </select>
+    </select>
+
+    <!--  一对多用resultMap  -->
+    <select id="findAuctionNow" resultMap="auctionAndRecordResultMap">
+        SELECT
+            auction.*,
+            auctionrecord.id record_id,
+            auctionrecord.userId record_user_id,
+            auctionrecord.auctionId record_auction_id,
+            auctionrecord.auctionTime,
+            auctionrecord.auctionPrice,
+            auctionuser.userName
+        FROM
+	        auction,auctionrecord,auctionuser
+        WHERE
+	        auction.auctionId=auctionrecord.auctionId
+            AND auctionrecord.userId=auctionuser.userId
+            AND auction.auctionEndTime>NOW()
+    </select>
+
+    <!--  一对一关系  -->
+    <select id="findAuctionEnd" resultType="com.web.auction.pojo.AuctionCustom">
+        SELECT
+            auction.auctionName,
+            auction.auctionStartTime,
+            auction.auctionEndTime,
+            auction.auctionStartPrice,
+            auctionrecord.auctionPrice,
+            auctionuser.userName
+        FROM
+            auction,auctionrecord,auctionuser
+        WHERE
+            auction.auctionId=auctionrecord.auctionId
+            AND auctionrecord.userId=auctionuser.userId
+            AND auction.auctionEndTime<![CDATA[<]]>NOW()
+            AND auctionrecord.auctionPrice=
+                (SELECT MAX(r.auctionPrice) FROM auctionrecord r
+                    WHERE r.auctionId=auction.auctionId)
+    </select>
+
+
 </mapper>

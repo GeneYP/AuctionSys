@@ -3,6 +3,7 @@ package com.web.auction.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.web.auction.pojo.Auction;
+import com.web.auction.pojo.AuctionCustom;
 import com.web.auction.pojo.Auctionrecord;
 import com.web.auction.pojo.Auctionuser;
 import com.web.auction.service.AuctionService;
@@ -122,5 +123,16 @@ public class AuctionController {
         record.setUserid(user.getUserid());
         auctionService.addAuctionRecord(record);
         return "redirect:/toDetail?auctionid=" + record.getAuctionid();
+    }
+
+    @RequestMapping("/toResult")
+    public ModelAndView toResult(){
+        List<AuctionCustom> endList = this.auctionService.findAuctionEnd();
+        List<Auction> nowList = this.auctionService.findAuctionNow();
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("endList", endList);
+        mv.addObject("nowList", nowList);
+        mv.setViewName("auctionResult");
+        return mv;
     }
 }
