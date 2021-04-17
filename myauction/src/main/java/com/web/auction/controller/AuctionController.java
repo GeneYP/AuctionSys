@@ -116,10 +116,11 @@ public class AuctionController {
     }
 
     @PostMapping("/saveAuctionRecord")   //DispatcherServlet(异常会抛给这个前段控制器)-->异常处理器要集中处理应用的异常
-    public String saveAuctionRecord(Auctionrecord record, HttpSession session){
+    public String saveAuctionRecord(Auctionrecord record, HttpSession session) throws Exception {
         record.setAuctiontime(new Date());
         Auctionuser user = (Auctionuser) session.getAttribute("user");
         record.setUserid(user.getUserid());
+        auctionService.addAuctionRecord(record);
         return "redirect:/toDetail?auctionid=" + record.getAuctionid();
     }
 }

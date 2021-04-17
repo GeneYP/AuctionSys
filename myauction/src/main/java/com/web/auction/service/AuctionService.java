@@ -21,5 +21,5 @@ public interface AuctionService {
 
     public Auction findAuctionAndRecordById(int auctionid);
 
-    public void addAuctionrecord(Auctionrecord record) throws Exception;
+    public void addAuctionRecord(Auctionrecord record) throws Exception;
 }

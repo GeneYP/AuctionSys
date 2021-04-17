@@ -13,10 +13,10 @@
   <div class="sale">
     <h1 class="lf">在线拍卖系统</h1>
 	    <!-- 如果用户没有登录进来，显示“登录”链接，否则显示“注销” -->
-	    <span th:if="${session.loginUser != null}">
+	    <span th:if="${session.user != null}">
 	    	 <div class="logout right"><a href="/doLogout" title="注销">注销</a></div>
 	    </span>
-	    <span th:if="${session.loginUser == null}">
+	    <span th:if="${session.user == null}">
 	    	 <div class="logout right"><a href="/login" title="登录">登录</a></div>
 	    </span>  
   </div>
@@ -46,7 +46,7 @@
         <li class="borderno" th:text="${auctionDetail.auctionstartprice}"></li>
       </ul>
   </div>
-  <div class="rg borders"><img th:src="@{/upload/}+${auctionDetail.auctionpic}" width="270" height="185" alt="" /></div>
+  <div class="rg borders"><img th:src="@{/pic/}+${auctionDetail.auctionpic}" width="270" height="185" alt="" /></div>
   <div class="cl"></div>
   
   <form action="/saveAuctionRecord" method="post">

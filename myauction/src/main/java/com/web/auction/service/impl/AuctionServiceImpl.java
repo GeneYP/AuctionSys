@@ -78,24 +78,28 @@ public class AuctionServiceImpl implements AuctionService {
      * @throws Exception
      */
     @Override
-    public void addAuctionrecord(Auctionrecord record) throws Exception {
+    public void addAuctionRecord(Auctionrecord record) throws Exception {
         //判断业务规则
         Auction auction = auctionCustomMapper.findAuctionAndRecordById(record.getAuctionid());
-        if(auction.getAuctionendtime().after(new Date())==false){
+        if(!auction.getAuctionendtime().after(new Date())){
+            System.out.println("商品竞拍结束！");
             throw new AuctionPriceException("商品竞拍已结束!");
         } else {
             //判断是不是首次竞价
             if(auction.getAuctionrecordList().size()>0){  //是首次
                 Auctionrecord maxRecord = auction.getAuctionrecordList().get(0);
                 if(record.getAuctionprice()<=maxRecord.getAuctionprice()){
+                    System.out.println("必须高于最高价！");
                     throw new AuctionPriceException("必须高于最高价！");
                 }
             } else {    // 不是首次
                 if(record.getAuctionprice()<=auction.getAuctionstartprice()){
+                    System.out.println("必须高于起拍价！");
                     throw new AuctionPriceException("必须高于起拍价！");
                 }
             }
         }
         auctionrecordMapper.insert(record);
+        System.out.println("添加成功！");
     }
 }
