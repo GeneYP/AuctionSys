@@ -64,26 +64,30 @@ public class AuctionController {
 
     @GetMapping("/deleteAuction")
     public String deleteAuction(int auctionid){
-        //删除(只能删除没有交易的)
-        auctionService.deleteAuction(auctionid);
+        //删除(
+        auctionService.removeAuction(auctionid);
         return "redirect:/queryAuctions";
     }
 
-    @GetMapping("/toupdate")
-    public String toupdate(Auction auction){
-        return "updateAuction";
+    @GetMapping("/toUpdate")
+    public ModelAndView toUpdate(int auctionid){    //先查询再更新
+        Auction auction = auctionService.findAuctionById(auctionid);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("auction", auction);  //数据放入视图
+        mv.setViewName("updateAuction");
+        return mv;
     }
 
     @PostMapping("/submitUpdateAuction")
     public String submitUpdateAuction(Auction auction, MultipartFile pic){
-        //0. 先查询
-
-
-
         //1. 处理文件，保存到文件夹中  D://ProTempFile
         try{
+            String path = "D:/proTempFile";
             if (pic.getSize() > 0) {
-                String path = "D:/proTempFile";
+                File oldFile = new File(path, auction.getAuctionpic());  //先把旧的文件地址给检查咯，有的话给删咯
+                if(oldFile.exists()){
+                    oldFile.delete();
+                }
                 File targetFile = new File(path, pic.getOriginalFilename());
                 pic.transferTo(targetFile);
                 //设置图片的名字、类型

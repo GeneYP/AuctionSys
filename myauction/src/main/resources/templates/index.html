@@ -50,8 +50,8 @@
             <li th:text="${auction.auctionstartprice}"></li>
             <li class="borderno red">
                 <div th:if="${session.user.userisadmin==1}">
-                    <a href="#" title="竞拍" onclick="dele();">修改</a>
-                    <a th:href="@{/deleteAuction(auctionid=${auction.auctionid})}" title="竞拍";>删除</a>
+                    <a th:href="@{/toUpdate(auctionid=${auction.auctionid})}">修改</a>
+                    <a th:href="@{/deleteAuction(auctionid=${auction.auctionid})}">删除</a>
                 </div>
                 <div th:if="${session.user.userisadmin==0}">
                     <a href="#" title="竞拍" onclick="abc();">竞拍</a>

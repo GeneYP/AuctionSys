@@ -10,7 +10,11 @@ public interface AuctionService {
 
     public void addAuction(Auction auction);
     
-    public void deleteAuction(int auctionid);
+//    public void deleteAuction(int auctionid);
+
+    public void removeAuction(int auctionid);
+
+    public Auction findAuctionById(int auctionid);
 
     public void updateAuction(Auction auction);
 }

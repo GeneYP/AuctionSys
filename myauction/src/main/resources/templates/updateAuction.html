@@ -105,7 +105,7 @@
           <label>拍卖品图片：</label>
           <div class="lf salebd">
             <div id="imagePreview" >
-              <img id="imgid" th:src="@{/upload(pic=${auction.auctionpic})}" width="100" height="100" />
+              <img id="imgid" th:src="@{/pic/}+${auction.auctionpic}" width="100" height="100" />
             </div>
             <!--  <img id="imgid" src="images/ad20.jpg" width="100" height="100" /> -->
           </div>
