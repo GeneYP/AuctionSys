@@ -68,4 +68,33 @@ public class AuctionController {
         auctionService.deleteAuction(auctionid);
         return "redirect:/queryAuctions";
     }
+
+    @GetMapping("/toupdate")
+    public String toupdate(Auction auction){
+        return "updateAuction";
+    }
+
+    @PostMapping("/submitUpdateAuction")
+    public String submitUpdateAuction(Auction auction, MultipartFile pic){
+        //0. 先查询
+
+
+
+        //1. 处理文件，保存到文件夹中  D://ProTempFile
+        try{
+            if (pic.getSize() > 0) {
+                String path = "D:/proTempFile";
+                File targetFile = new File(path, pic.getOriginalFilename());
+                pic.transferTo(targetFile);
+                //设置图片的名字、类型
+                auction.setAuctionpic(pic.getOriginalFilename());
+                auction.setAuctionpictype(pic.getContentType());
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        //2. 保存文本数据到数据库中。
+        auctionService.updateAuction(auction);
+        return "redirect:/queryAuctions";
+    }
 }

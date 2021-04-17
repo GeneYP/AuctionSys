@@ -30,4 +30,10 @@ public class AuctionServiceImpl implements AuctionService {
         System.out.println("即将删除" + auctionid);
         auctionMapper.deleteByPrimaryKey(auctionid);
     }
+
+    @Override
+    public void updateAuction(Auction auction) {
+        System.out.println("即将修改：" + auction);
+        auctionMapper.updateByPrimaryKey(auction);
+    }
 }
