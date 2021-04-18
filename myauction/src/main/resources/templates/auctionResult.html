@@ -54,9 +54,11 @@
       <li th:text="${#dates.format(auctionDetail.auctionstarttime,'yyyy-MM-dd HH:mm:ss')}"></li>
       <li th:text="${#dates.format(auctionDetail.auctionendtime,'yyyy-MM-dd HH:mm:ss')}"></li>
       <li th:text="${auctionDetail.auctionstartprice}"></li>
-      <li th:each="record:${auctionDetail.auctionrecordList}" class="borderno blue record">
-        <p th:text="${record.user.username}"></p>
-        ￥<span th:text="${record.auctionprice}"></span>
+      <li class="borderno blue record">
+        <p th:each="record:${auctionDetail.auctionrecordList}">
+        <span th:text="${record.user.username}"></span>
+        <span th:text="${record.auctionprice}"></span>
+        </p>
       </li>
       <div class="cl"></div>
     </ul>
